@@ -30,6 +30,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 
 	is_unstable = 0;
 
+
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
