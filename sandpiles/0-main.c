@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "0-sandpiles.h"
+#include "sandpiles.h"
 
 /**
  * print_grid_sum - Print 3x3 grids sum
