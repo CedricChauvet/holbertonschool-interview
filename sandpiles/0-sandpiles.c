@@ -22,6 +22,12 @@ static void print_grid(int grid[3][3])
 	}
 }
 
+/**
+ * sandpiles_sum - sum 2 grids
+ * @grid1: 3x3 grid
+ * @grid2: 3x3 grid
+ *
+ */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int grid_unstable[3][3];
@@ -59,13 +65,18 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	}
 }
 
-
+/**
+ * sandpiles_stabling - stabilize a grid
+ * @grid_unstable: 3x3 grid_unstable
+ * @grid1: 3x3 grid1
+ *
+ */
 void sandpiles_stabling(int grid_unstable[3][3], int grid1[3][3])
 {
-	
+
 	int i, j;
 	int is_unstable;
-	
+
 	is_unstable = 0;
 
 	for (i = 0; i < 3; i++)
