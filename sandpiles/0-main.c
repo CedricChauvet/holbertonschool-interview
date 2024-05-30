@@ -2,7 +2,10 @@
 #include <stdio.h>
 
 #include "sandpiles.h"
-
+#ifdef N
+#undef N
+#endif
+#define N 3
 /**
  * print_grid_sum - Print 3x3 grids sum
  * @grid1: Left 3x3 grid
@@ -62,17 +65,16 @@ static void print_grid(int grid[3][3])
  */
 int main(void)
 {
-    int grid1[3][3] = {
-        {3, 3, 3},
-        {3, 3, 3},
-        {3, 3, 3}
-    };
-    int grid2[3][3] = {
-        {1, 3, 1},
-        {3, 3, 3},
-        {1, 3, 1}
-    };
-
+	int grid1[N][N] = {
+		{1, 0, 0},
+		{0, 0, 0},
+		{0, 0, 0}
+	};
+	int grid2[N][N] = {
+		{3, 0, 0},
+		{0, 0, 0},
+		{0, 0, 0}
+	};
     print_grid_sum(grid1, grid2);
 
     sandpiles_sum(grid1, grid2);
