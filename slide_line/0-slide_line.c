@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "slide_line.h"
 
+#define MAX_SIZE 100
 
 /**
 * slide_line - Entry point
@@ -13,7 +14,7 @@
 */
 int slide_line(int *line, size_t size, int direction)
 {
-	int newLine[size];
+	int newLine[MAX_SIZE];
 	int i, j;
 	int h = 0;
 
@@ -57,7 +58,6 @@ int slide_line(int *line, size_t size, int direction)
 		for (i = 0; i < (int)size; i++)
 		{
 			line[i] = newLine[i];
-			printf("[%d]", newLine[i]);
 		}
 	}
 	if (direction == SLIDE_RIGHT)
