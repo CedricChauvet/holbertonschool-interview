@@ -11,7 +11,7 @@
 * @direction: Arguments vector
 * Return: int
 */
-int slide_line(int *line, int size, int direction)
+int slide_line(int *line, size_t size, int direction)
 {
 	int newLine[size];
 	int i, j;
