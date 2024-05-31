@@ -16,30 +16,17 @@ int slide_line(int *line, size_t size, int direction)
 	int newLine[size];
 	int i, j;
 	int h = 0;
-	size_t start, end;
 
-	for (i = 0; i < (int)size; i++){
+	for (i = 0; i <= (int)size; i++){
 		newLine[i] = 0;
 	}
 
 
-	if (direction == SLIDE_LEFT)
-	{	start = 0;
-		end = size;
-	}
-	if (direction == SLIDE_RIGHT)
-	{
-		start = size;
-		end = 0;
-	}
-
-	for (i = start; i < direction * (int)end ; i += direction)
+	for (i = 0; i <= (int)size ; i += 1)
 	{	
-
-		
 		if (line[i] != 0)
 		{
-			for (j = i + 1; j < (int)end ; j += 1)
+			for (j = i + 1; j <= (int)size ; j += 1)
 			{
 				if (line[j] == 0)
 				{
@@ -50,36 +37,44 @@ int slide_line(int *line, size_t size, int direction)
 				{
 					newLine[h] = 2 * line[i];
 					h= h + 1;
-					i = j;
+					i = j - 1;
 					break;
 				}
 				else if (line[i] != line[j] && line[j] != 0 )
 				{
 					newLine[h] = line[i];
 					h = h + 1;
-					i = j;
+					i = j - 1;
 					break;
 				}
 			}
+		}	
+	}
+
+	if (direction == SLIDE_LEFT)
+	{
+		for (i = 0; i < (int)size; i++){
+			line[i] = newLine[i];
+			printf("[%d]", newLine[i]);
 		}
-		if (i == (int)end - 1 && line[i] != 0)
+	}
+	if (direction == SLIDE_RIGHT)
+	{
+		while(newLine[size - 1] == 0)
 		{
-			newLine[h] = line[i];
-			printf("some"); 
+			for (i = size ; i > 0 ;i--)
+				{
+					newLine[i] = newLine[i - 1];
+				}
+				newLine[0] = 0;
+				
 		}
-	}
-
-	printf("newLine");
-	for (i = 0; i < (int)size; i++){
-		line[i] = newLine[i];
-		printf("[%d]", newLine[i]);
 		
-	}
-
-	 
-	printf("\n");
-	printf("direction [%d]\n", direction);
-	// *newLine = find_zeros(line, size);
-	printf("size [%lu]\n", size);
+        // copy newLine to line
+		for (i = 0; i < (int)size; i++){
+			line[i] = newLine[i];
+			
+		}
+	} 
 	return (1);
 }
