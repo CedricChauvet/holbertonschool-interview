@@ -13,7 +13,7 @@
 */
 int slide_line(int *line, size_t size, int direction)
 {
-	int newLine[size];
+	const int newLine[size];
 	int i, j;
 	int h = 0;
 
