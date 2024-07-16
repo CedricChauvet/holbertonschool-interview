@@ -6,23 +6,23 @@ by Ced
 """
 
 
-
 def canUnlockAll(boxes):
-
+    """
+    using a functionnal method
+    """
     n = len(boxes)
     global list_box_closed
     list_box_closed  = [False] * n
     
-    new_list = boxes[0] 
-    for _ in range(n):
-            new_list=open_box(boxes,new_list)
+    
+    open_box(boxes, 0)
     
     print("list", list_box_closed)
-    # print(list_box_closed)
-
 
 def open_box(boxes,iliste):
-    for i in iliste: 
-        list_box_closed[i] = True
+    return open_box(boxes[iliste])
+
+    
+#        list_box_closed[i] = True
+
  
-    return 
