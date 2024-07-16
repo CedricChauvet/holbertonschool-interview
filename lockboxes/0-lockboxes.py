@@ -15,12 +15,19 @@ def canUnlockAll(boxes):
     list_box_closed  = [False] * n
     
     
-    open_box(boxes, 0)
-    
-    print("list", list_box_closed)
+    open_box(boxes, 0,n)
+    list_box_closed[0] = True
+    return all(list_box_closed)
 
-def open_box(boxes,iliste):
-    return open_box(boxes[iliste])
+
+def open_box(boxes,iliste,dur):
+    dur -= 1
+    if dur > 0:
+        box = boxes[iliste]
+        for i in box:
+            list_box_closed[i] = True
+            open_box(boxes,i,dur)
+  
 
     
 #        list_box_closed[i] = True
