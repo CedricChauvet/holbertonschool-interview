@@ -20,10 +20,11 @@ def canUnlockAll(boxes):
 
     for j in range(n):
         for i in boite_a_ouvrir:
-            list_box_closed[i] = True
-            a = boxes[i]
-            for k in a:
-                nouvelles_boites.add(k)
+            if i < n:
+                list_box_closed[i] = True
+                a = boxes[i]
+                for k in a:
+                    nouvelles_boites.add(k)
 
         boite_a_ouvrir = set(nouvelles_boites)
 
