@@ -10,26 +10,27 @@ def canUnlockAll(boxes):
     """
     using a functionnal method
     """
+
     n = len(boxes)
     global list_box_closed
-    list_box_closed  = [False] * n
-    
-    
-    open_box(boxes, 0,n)
-    list_box_closed[0] = True
-    return all(list_box_closed)
+    list_box_closed = [False] * n
 
+    boite_a_ouvrir = {0}
+    nouvelles_boites = {0}
 
-def open_box(boxes,iliste,dur):
-    dur -= 1
-    if dur > 0:
-        box = boxes[iliste]
-        for i in box:
+    for j in range(n):
+        for i in boite_a_ouvrir:
             list_box_closed[i] = True
-            open_box(boxes,i,dur)
-  
+            a = boxes[i]
+            for k in a:
+                nouvelles_boites.add(k)
 
-    
-#        list_box_closed[i] = True
+        boite_a_ouvrir = set(nouvelles_boites)
 
- 
+    # print(list_box_closed)
+    # print(boite_a_ouvrir)
+
+    if all(list_box_closed):
+        return True
+    else:
+        return False
