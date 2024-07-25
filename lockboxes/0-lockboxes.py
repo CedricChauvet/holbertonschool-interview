@@ -19,6 +19,8 @@ def canUnlockAll(boxes):
     nouvelles_boites = {0}
 
     for j in range(n):
+        if all(list_box_closed):
+            return True
         for i in boite_a_ouvrir:
             if i < n:
                 list_box_closed[i] = True
