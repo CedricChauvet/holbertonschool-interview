@@ -1,5 +1,5 @@
 #!/usr/bin/node
-// hit
+// github.com/zafarali/starwars-api
 const request = require('request');
 const util = require('util');
 
