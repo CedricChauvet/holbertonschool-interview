@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 const request = require('request');
 const util = require('util');
 
