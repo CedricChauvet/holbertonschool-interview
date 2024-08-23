@@ -18,7 +18,7 @@ if (!movieId) {
 const url = `https://swapi-api.hbtn.io/api/films/${movieId}/`;
 
 // Function to fetch character data
-async function fetchCharacterData(characterUrl) {
+async function fetchCharacterData (characterUrl) {
   try {
     const response = await requestPromise(characterUrl);
     if (response.statusCode !== 200) {
@@ -33,7 +33,7 @@ async function fetchCharacterData(characterUrl) {
 }
 
 // Main function to fetch movie and character data
-async function fetchMovieAndCharacters() {
+async function fetchMovieAndCharacters () {
   try {
     const movieResponse = await requestPromise(url);
     if (movieResponse.statusCode !== 200) {
