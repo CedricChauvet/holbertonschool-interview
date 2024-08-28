@@ -21,8 +21,9 @@ def rain(walls):
 
     for k in range(len(mur)-1):
         mini.append(min(walls[mur[k]], walls[mur[k+1]]))
-
+    
     for i,j in zip(mini, ecart):
         rain += i*j
-    return walls
+    
+    return rain
 
