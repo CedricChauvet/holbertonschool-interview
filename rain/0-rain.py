@@ -9,6 +9,9 @@ def rain(walls):
     mini = []
     rain = 0 
 
+    if walls == []:
+        return 0 
+
     for i,w in enumerate(walls):
         if w != 0:
             mur.append(i)
