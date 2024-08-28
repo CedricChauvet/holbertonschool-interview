@@ -3,16 +3,17 @@
 0_main
 """
 
+
 def rain(walls):
     mur = []
     ecart = []
     mini = []
-    rain = 0 
+    rain = 0
 
     if walls == []:
-        return 0 
+        return 0
 
-    for i,w in enumerate(walls):
+    for i, w in enumerate(walls):
         if w != 0:
             mur.append(i)
 
@@ -21,9 +22,8 @@ def rain(walls):
 
     for k in range(len(mur)-1):
         mini.append(min(walls[mur[k]], walls[mur[k+1]]))
-    
-    for i,j in zip(mini, ecart):
-        rain += i*j
-    
-    return rain
 
+    for i, j in zip(mini, ecart):
+        rain += i*j
+
+    return rain
