@@ -6,6 +6,6 @@
 
 void heap_sort(int *array, size_t size){
     // Build the heap
-    printf("Building the heap\n");
+    print_array( array, size);
 
     }
