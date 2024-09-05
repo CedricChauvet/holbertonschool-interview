@@ -5,5 +5,5 @@
 
 void print_array(const int *array, size_t size);
 void heap_sort(int arr[], int n);
-void siftDown(int arr[], int n, int i);
+void siftDown(int arr[], int n, int i, int len);
 #endif // SORT_H

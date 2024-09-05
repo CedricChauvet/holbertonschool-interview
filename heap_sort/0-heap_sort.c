@@ -16,7 +16,9 @@
 //     }
 
 
-void siftDown(int arr[], int n, int i) {
+
+// Fonction pour réorganiser le tas
+void siftDown(int arr[], int n, int i, int len) {
     int largest = i; // Initialiser largest comme racine
     int left = 2 * i + 1; // gauche = 2*i + 1
     int right = 2 * i + 2; // droite = 2*i + 2
@@ -34,26 +36,29 @@ void siftDown(int arr[], int n, int i) {
         int temp = arr[i];
         arr[i] = arr[largest];
         arr[largest] = temp;
-
-        // Appliquer récursivement sift-down sur le sous-arbre affecté
-        siftDown(arr, n, largest);
+        
+        // Réorganiser le sous-arbre affecté
+        siftDown(arr, n, largest,len);
+        print_array(arr, len);
+        
     }
 }
 
 // Fonction principale pour effectuer le tri par tas
 void heap_sort(int arr[], int n) {
     // Construire le tas (réorganiser le tableau)
+    int len =n;
     for (int i = n / 2 - 1; i >= 0; i--)
-        siftDown(arr, n, i);
-
+        siftDown(arr, n, i, len);
+        
     // Extraire un par un les éléments du tas
     for (int i = n - 1; i > 0; i--) {
         // Déplacer la racine actuelle à la fin
         int temp = arr[0];
         arr[0] = arr[i];
         arr[i] = temp;
-        print_array(arr, n);
-        // Appeler sift-down sur le tas réduit
-        siftDown(arr, i, 0);
+
+        // Appeler siftDown sur le tas réduit
+        siftDown(arr, i, 0, len);
     }
 }
