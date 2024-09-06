@@ -130,9 +130,9 @@ void write_big_o_notations()
         return;
     }
 
-    fprintf(file, "O(nlogn)\n");   // Best case time complexity
-    fprintf(file, "O(nlogn)\n"); // Average case time complexity
-    fprintf(file, "O(nlogn)\n");   // Worst case time complexity
+    fprintf(file, "O(nlog(n))\n");   // Best case time complexity
+    fprintf(file, "O(nlog(n))\n"); // Average case time complexity
+    fprintf(file, "O(nlog(n))\n");   // Worst case time complexity
 	fprintf(file, "\n");
     fclose(file);
 }
