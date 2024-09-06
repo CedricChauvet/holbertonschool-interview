@@ -119,20 +119,3 @@ void heap_sort(int a[], int count)
 		siftDown(a, 0, end, count);
 	}
 }
-
-
-void write_big_o_notations()
-{
-    FILE *file = fopen("0-O", "w");
-    if (file == NULL)
-    {
-        perror("Failed to open file");
-        return;
-    }
-
-    fprintf(file, "O(nlog(n))\n");   // Best case time complexity
-    fprintf(file, "O(nlog(n))\n"); // Average case time complexity
-    fprintf(file, "O(nlog(n))\n");   // Worst case time complexity
-	fprintf(file, "\n");
-    fclose(file);
-}
