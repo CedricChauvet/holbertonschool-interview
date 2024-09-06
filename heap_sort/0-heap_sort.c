@@ -60,5 +60,7 @@ void heap_sort(int arr[], int n) {
 
         // Appeler siftDown sur le tas réduit
         siftDown(arr, i, 0, len);
+        
     }
+    print_array(arr, len);
 }
