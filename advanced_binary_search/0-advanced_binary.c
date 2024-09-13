@@ -21,11 +21,11 @@ int advanced_binary(int *array, size_t size, int value)
     // printf("mid     %lld\n", mid);
     
     if (value == array[mid]) {
-        printf("got ");
+        //printf("got ");
         return mid;
     }
     else if (value < array[mid]) {
-        printf("left ");
+        //printf("left ");
 
         if (size % 2 == 0)
             return advanced_binary(array, mid, value);
@@ -33,7 +33,7 @@ int advanced_binary(int *array, size_t size, int value)
             return advanced_binary(array, mid-1, value);
     }
     else {
-        printf("right ");
+        //printf("right ");
         if(size % 2 == 0)
         {
             result = advanced_binary(array + mid , size - mid , value);
@@ -49,17 +49,6 @@ int advanced_binary(int *array, size_t size, int value)
             return result + mid;
     }
 }
-
-    // printf("Searching in array: ");
-    // print_array(array, size);
-    // // printf(" index %ld \n", size / 2);
-    // // printf("Val milieu %d \n", array[size/2]);
-    // int new_size = (int)floor(size / 2);
-    // printf("index milieu %d \n", new_size);
-    // // if (size == 0)
-    // //     return (-1);
-
-
 
 
     /**
