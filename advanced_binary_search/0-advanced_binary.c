@@ -4,46 +4,65 @@
 #include <math.h>
 #include "search_algos.h"
 
-int mid = 0;
-
-int advanced_binary(int *array, size_t size, int value)
-{
-    int result;
-    printf("Searching in array: ");
-    print_array(array, size);
+/**
+ * Fonction récursive pour effectuer la recherche binaire avancée en utilisant la taille du tableau.
+ */
+int advanced_binary(int *array, size_t size, int value) {
+    // Cas de base pour des tableaux très petits
     if (size == 0) {
-        return -1;  // Élément non trouvé
+        return -1;
     }
-   
-    // si size est paire on compare par rapport a l'element de gauche 
-    if (size % 2 == 0)
-        mid = (size / 2) -1;
-    // si size est impaire on compare par rapport a l'element du milieu
-    else
-        mid = floor(size / 2);
-
-    
-    // si la valeur tombe sur le milieu de la liste
-    if (value == array[mid]) {
-        printf("got ");
-        return mid ;
-
-    }
-    else if (value < array[mid]) {
-        //printf("left ");
-
-            return advanced_binary(array, mid, value);
-    }
-    else {
-        int result = advanced_binary(array + mid +1 , size - mid - 1 , value);
-        
-        
-        if  (result == -1) 
+        // Afficher le sous-tableau actuel.
+    print_array(array, size);
+    // Cas spécial pour un tableau de 1 élément
+    if (size == 1) {
+        if (array[0] == value) {
+            return 0;
+        } else {
             return -1;
-        else 
-            return result + mid ;
+        }
+    }
+
+    // Cas spécial pour un tableau de 2 éléments
+    if (size == 2) {
+        if (array[0] == value) {
+            return 0;
+        }
+        if (array[1] == value) {
+            return 1;
+        }
+        return -1;
+    }
+
+
+
+    size_t mid = size / 2;
+
+    // Si on trouve la valeur au milieu, vérifier si c'est la première occurrence.
+    if (array[mid] == value) {
+        // Si c'est le premier élément du tableau ou si le précédent élément n'est pas égal à la valeur.
+        if (mid == 0 || array[mid - 1] != value) {
+            return mid;
+        }
+        // Sinon, continuer à chercher dans la moitié gauche pour trouver la première occurrence.
+        return advanced_binary(array, mid, value);
+    }
+    // Si la valeur au milieu est plus grande, chercher dans la moitié gauche.
+    else if (array[mid] > value) {
+        return advanced_binary(array, mid, value);
+    }
+    // Si la valeur au milieu est plus petite, chercher dans la moitié droite.
+    else {
+        int result = advanced_binary(array + mid + 1, size - mid - 1, value);
+        // Si la valeur est trouvée dans la partie droite, ajuster l'index.
+        if (result != -1) {
+            return mid + 1 + result;
+        } else {
+            return -1;
+        }
     }
 }
+
 
 
     /**
