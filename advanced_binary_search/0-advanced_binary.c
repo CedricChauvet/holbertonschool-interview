@@ -11,7 +11,7 @@ int advanced_binary(int *array, size_t size, int value)
     int result;
     printf("Searching in array: ");
     print_array(array, size);
-    if (size == 1) {
+    if (size == 0) {
         return -1;  // Élément non trouvé
     }
    
@@ -21,8 +21,12 @@ int advanced_binary(int *array, size_t size, int value)
     // printf("mid     %lld\n", mid);
     
     if (value == array[mid]) {
-        //printf("got ");
-        return mid;
+        printf("got ");
+        if(size % 2 == 0)
+            return mid;
+        else
+            return mid +1;
+
     }
     else if (value < array[mid]) {
         //printf("left ");
@@ -46,7 +50,7 @@ int advanced_binary(int *array, size_t size, int value)
         if  (result == -1) 
             return -1;
         else 
-            return result + mid;
+            return result + mid ;
     }
 }
 
