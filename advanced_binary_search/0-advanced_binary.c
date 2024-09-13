@@ -15,37 +15,28 @@ int advanced_binary(int *array, size_t size, int value)
         return -1;  // Élément non trouvé
     }
    
-    // printf("size     %lld\n", size);
-    size_t mid = size / 2;
+    // si size est paire on compare par rapport a l'element de gauche 
+    if (size % 2 == 0)
+        mid = (size / 2) -1;
+    // si size est impaire on compare par rapport a l'element du milieu
+    else
+        mid = floor(size / 2);
 
-    // printf("mid     %lld\n", mid);
     
+    // si la valeur tombe sur le milieu de la liste
     if (value == array[mid]) {
         printf("got ");
-        if(size % 2 == 0)
-            return mid;
-        else
-            return mid +1;
+        return mid ;
 
     }
     else if (value < array[mid]) {
         //printf("left ");
 
-        if (size % 2 == 0)
             return advanced_binary(array, mid, value);
-        else    
-            return advanced_binary(array, mid-1, value);
     }
     else {
-        //printf("right ");
-        if(size % 2 == 0)
-        {
-            result = advanced_binary(array + mid , size - mid , value);
-        }
-        else
-        {
-            result = advanced_binary(array + mid +1 , size - mid - 1 , value);
-        }   
+        int result = advanced_binary(array + mid +1 , size - mid - 1 , value);
+        
         
         if  (result == -1) 
             return -1;
