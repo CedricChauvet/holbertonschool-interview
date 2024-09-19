@@ -18,5 +18,6 @@ int main(void)
     heap_sort(array, n);
     printf("\n");
     print_array(array, n);
+    write_big_o_notations();
     return (0);
 }
