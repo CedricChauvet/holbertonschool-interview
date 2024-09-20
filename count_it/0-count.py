@@ -21,7 +21,6 @@ def count_words(subreddit, word_list, after=None, result="", word_counts=None):
         params = {'limit': 100, 'after': after}
         try:
             response = requests.get(url, headers=headers, params=params)
-            # response.raise_for_status()
             data = response.json()
             new_titles = list(map(lambda article: article['data']['title'], data['data']['children']))
             result += ' ' + reduce(lambda x, y: x + ' ' + y, new_titles).lower()
