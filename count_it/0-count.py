@@ -1,49 +1,38 @@
-#!/usr/bin/python3
-"""
-what do I do?
-1/ write a recursive function that queries reddit API
-VERSION ANTERIEURE DE COUNT IT
-"""
-import json
-import re
 import requests
-
+import re
+from functools import reduce
 
 def count_words(subreddit, word_list):
-    # Effectuer la requête GET
-    url = 'https://www.reddit.com/r/' +subreddit + '/hot.json'
-    response = requests.get(url)
-
-    # Extraire le contenu JSON
+    # Effectuer la requête GET et préparer les données
+    url = f'https://www.reddit.com/r/{subreddit}/hot.json'
+    headers = {'User-Agent': 'MyBot/1.0'}
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
     data = response.json()
 
-    # Afficher le JSON de manière lisible avec indentation
-    # json_string = json.dumps(data, indent=4)    
+    if 'data' in data and 'children' in data['data']:
+        titres = list(map(lambda article: article.get('data', {}).get('title', ''), data['data']['children']))
+        result = reduce(lambda x, y: x + ' ' + y, titres).lower()
+        word_list = sorted(set(map(str.lower, word_list)))
+        
+        # Appel initial à la fonction récursive
+        count_words_recursive(word_list, result)
+    else:
+        print("La structure de la réponse n'est pas celle attendue.")
 
 
-    titres = [article['data']['title'] for article in data['data']['children']]
-    result = " ".join(titres)
-    result = result.lower()
-    # print("nombre de titres :", len(titres))   
-
-    word_list =  sorted(set(word_list))
-    hotlist = word_list
-
-    parcourir_liste_recursif(hotlist, result)
-
-
-def parcourir_liste_recursif(liste, result):
-    # Condition d'arrêt : Si la liste est vide, on arrête
-    if not liste:
+def count_words_recursive(word_list, result):
+    # Cas de base : si la liste de mots est vide, on arrête la récursion
+    if not word_list:
         return
-    liste[0] = liste[0].lower()
-    pattern = r'\b' + liste[0]+ r'\b' #expression regex pour le mot complet
-    count_python =  len(re.findall(pattern, result)) #utilisation de re
-    #count_python = result.count(liste[0])
-    print(f"{liste[0]}: {count_python}")  
     
-    # Appeler la fonction récursive sur le reste de la liste (sauf le premier élément)
-    parcourir_liste_recursif(liste[1:],result)
-
+    # Traiter le premier mot de la liste
+    mot = word_list[0]
+    pattern = r'\b' + re.escape(mot) + r'\b'
+    count = len(re.findall(pattern, result))
+    print(f"{mot}: {count}")
+    
+    # Appel récursif avec le reste de la liste
+    count_words_recursive(word_list[1:], result)
 
 
