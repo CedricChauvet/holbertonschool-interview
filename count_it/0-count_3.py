@@ -19,7 +19,7 @@ def count_words(subreddit, word_list, result=None):
         titres = list(map(lambda article: article['data']['title'], data['data']['children']))
         
         # Utilisation de reduce() pour joindre les titres
-        result = reduce(lambda x, y: x + ' ' + y, titres).lower()
+        result = " ".join(titres).lower()
         
         word_list = sorted(set(map(str.lower, word_list)))
 

@@ -1,36 +1,48 @@
 #!/usr/bin/python3
-"""
-Script Python pour compter les mots dans les titres Reddit
-"""
-
+from functools import reduce
 import re
 import requests
 
+def count_words(subreddit, word_list, after=None, result="", word_counts=None):
+    # Initialisation de word_counts
+    if word_counts is None:
+        if not word_list:
+            return
 
-def count_words(subreddit, word_list, result=None):
-    # Première appel : récupérer les données de Reddit
-    if result is None:
+        word_counts = dict(map(lambda word: (word.lower(), 0), word_list))
+        word_counts = dict(sorted(word_counts.items()))
+        # print(f"word_counts entiere: {word_counts}")
+        #return count_words(subreddit, word_list[1:], after, result, word_counts)
+
+    # Requête à l'API Reddit
+    if after is not None or result == "":
         url = f'https://www.reddit.com/r/{subreddit}/hot.json'
         headers = {'User-Agent': 'MyBot/1.0'}
-        response = requests.get(url, headers=headers)
-        data = response.json()
-        
-        # Utilisation de map() et lambda au lieu d'une compréhension de liste
-        titres = list(map(lambda article: article['data']['title'], data['data']['children']))
-        
-        # Utilisation de reduce() pour joindre les titres
-        result = " ".join(titres).lower()
-        word_list = sorted(map(str.lower, word_list))
+        params = {'limit': 100, 'after': after}
+        try:
+            response = requests.get(url, headers=headers, params=params)
+            # response.raise_for_status()
+            data = response.json()
+            new_titles = list(map(lambda article: article['data']['title'], data['data']['children']))
+            result += ' ' + reduce(lambda x, y: x + ' ' + y, new_titles).lower()
+            after = data['data']['after']
+        except requests.RequestException:
+            after = None
 
-    # Condition d'arrêt : si la liste de mots est vide
-    if not word_list:
-        return
+    # Comptage des mots
+    if word_list:    
+        word_list = sorted(list(map(str.lower, word_list))) 
+        word = word_list[0]
+        if word in word_counts:
+            pattern = r'\b' + re.escape(word) + r'\b'
+            word_counts[word] += len(re.findall(pattern, result))
+        return count_words(subreddit, word_list[1:], after, result, word_counts)
 
-    # Compter les occurrences du premier mot
-    mot = word_list[0]
-    pattern = r'\b' + re.escape(mot) + r'\b'
-    count = len(re.findall(pattern, result))
-    print(f"{mot}: {count}")
+    # Traitement de la page suivante
+    if after:
+        return count_words(subreddit, list(word_counts.keys()), after, result, word_counts)
 
-    # Appel récursif pour le reste de la liste
-    count_words(subreddit, word_list[1:], result)
+    # Affichage des résultats
+    sorted_counts = sorted(word_counts.items(), key=lambda x: (-x[1], x[0]))
+    #list(map(lambda item: print(f"{item[0]}: {item[1]}"), filter(lambda x: x[1] >= 0, sorted_counts)))
+    list(map(lambda item: print(f"{item[0]}: {item[1]}"), sorted(filter(lambda x: x[1] >= 0, sorted_counts), key=lambda x: x[0])))
