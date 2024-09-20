@@ -1,8 +1,8 @@
 # Script Python pour compter les mots dans les titres Reddit
 
-import requests
-import re
 from functools import reduce
+import re
+import requests
 
 def count_words(subreddit, word_list, result=None):
     # Première appel : récupérer les données de Reddit
@@ -10,7 +10,6 @@ def count_words(subreddit, word_list, result=None):
         url = f'https://www.reddit.com/r/{subreddit}/hot.json'
         headers = {'User-Agent': 'MyBot/1.0'}
         response = requests.get(url, headers=headers)
-        response.raise_for_status()
         data = response.json()
         
         # Utilisation de map() et lambda au lieu d'une compréhension de liste
