@@ -5,7 +5,6 @@ use a recursive function
 
 
 """
-from functools import reduce
 import re
 import requests
 
