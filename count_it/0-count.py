@@ -44,7 +44,8 @@ def count_words(subreddit, word_list, after=None, result="", word_counts=None):
     # Affichage des résultats
     sorted_counts = sorted(word_counts.items(), key=lambda x: (-x[1], x[0]))
     sorted_counts = sorted(filter(lambda x: x[1] > 0, word_counts.items()), key=lambda x: (-x[1], x[0]))
-
+    if sorted_counts == []:
+        return
     print("sorted_counts: ", sorted_counts)
     #list(map(lambda item: print(f"{item[0]}: {item[1]}"), filter(lambda x: x[1] >= 0, sorted_counts)))
     list(map(lambda item: print(f"{item[0]}: {item[1]}"), sorted(filter(lambda x: x[1] >= 0, sorted_counts), key=lambda x: x[0])))
