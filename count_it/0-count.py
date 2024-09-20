@@ -1,8 +1,11 @@
-# Script Python pour compter les mots dans les titres Reddit
-
+#!/usr/bin/python3
+"""
+Script Python pour compter les mots dans les titres Reddit
+"""
 from functools import reduce
 import re
 import requests
+
 
 def count_words(subreddit, word_list, result=None):
     # Première appel : récupérer les données de Reddit
