@@ -10,9 +10,7 @@ import requests
 def count_words(subreddit, word_list):
     # Effectuer la requête GET et préparer les données
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
-    headers = {'User-Agent': 'MyBot/1.0'}
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
+    response = requests.get(url)
     data = response.json()
 
     if 'data' in data and 'children' in data['data']:
