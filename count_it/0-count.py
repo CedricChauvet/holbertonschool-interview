@@ -1,6 +1,11 @@
-import requests
-import re
+#!/usr/bin/python3
+"""
+make a List of keywords
+"""
 from functools import reduce
+import re
+import requests
+
 
 def count_words(subreddit, word_list):
     # Effectuer la requête GET et préparer les données
