@@ -2,7 +2,7 @@
 """
 Script Python pour compter les mots dans les titres Reddit
 """
-
+from functools import reduce
 import re
 import requests
 
@@ -19,8 +19,9 @@ def count_words(subreddit, word_list, result=None):
         titres = list(map(lambda article: article['data']['title'], data['data']['children']))
         
         # Utilisation de reduce() pour joindre les titres
-        result = " ".join(titres).lower()
-        word_list = sorted(map(str.lower, word_list))
+        result = reduce(lambda x, y: x + ' ' + y, titres).lower()
+        
+        word_list = sorted(set(map(str.lower, word_list)))
 
     # Condition d'arrêt : si la liste de mots est vide
     if not word_list:
