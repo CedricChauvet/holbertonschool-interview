@@ -5,7 +5,7 @@
 import sys
 
 if __name__ == '__main__':
-    count_words = __import__('0-count').count_words
+    count_words = __import__('countit2').count_words
     if len(sys.argv) < 3:
         print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
         print("Ex: {} programming 'python java javascript'".format(sys.argv[0]))
