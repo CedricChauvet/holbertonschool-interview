@@ -4,10 +4,10 @@ what do I do?
 1/ write a recursive function that queries reddit API
 VERSION ANTERIEURE DE COUNT IT
 """
-import requests
 import json
 import re
-import sys
+import requests
+
 
 def count_words(subreddit, word_list):
     # Effectuer la requête GET
