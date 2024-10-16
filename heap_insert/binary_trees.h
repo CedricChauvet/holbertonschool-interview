@@ -25,9 +25,8 @@ typedef struct binary_tree_s heap_t;
 heap_t *heap_insert(heap_t **root, int value);
 heap_t *create_node(int value);
 size_t binary_tree_size(const binary_tree_t *tree);
-void heapify_up(heap_t *node);
-heap_t *get_last_node(heap_t *root, size_t size);
-
+heap_t *heapify_up(heap_t *node);
+heap_t *get_last_node_parent(heap_t *root, size_t size);
 
 
 
