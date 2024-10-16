@@ -28,8 +28,6 @@ size_t binary_tree_size(const binary_tree_t *tree);
 heap_t *heapify_up(heap_t *node);
 heap_t *get_last_node_parent(heap_t *root, size_t size);
 
-
-
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 #endif /* _BINARY_TREES_H_ */
