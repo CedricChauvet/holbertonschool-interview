@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "binary_trees.h"
 
-typedef struct binary_tree_s binary_tree_t;
+
 /**
  * binary_tree_node - Creates a binary tree node
  * @parent: Pointer to the parent node of the node to create
