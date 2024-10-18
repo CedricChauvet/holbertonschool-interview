@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include "sort.h"
 
+
+/**
+ * merge - merge the two halves of the array
+ * @array: Pointer to the array
+ * @left: Pointer to the left array
+ * @right: Pointer to the right array
+ * @mid: Pointer to the mid array
+ * @temp: Pointer to the temp array
+ */
 void merge(int *array, size_t left, size_t mid, size_t right, int *temp)
 {
 	size_t i = left, j = mid, k = 0;
@@ -44,6 +53,13 @@ void merge(int *array, size_t left, size_t mid, size_t right, int *temp)
 
 }
 
+/**
+ * merge_sort_recursive - recursive method
+ * @array: Pointer to the array
+ * @left: Pointer to the left array
+ * @right: Pointer to the right array
+ * @temp: Pointer to the temp array
+ */
 void merge_sort_recursive(int *array, size_t left, size_t right, int *temp)
 {
 	if (right - left <= 1)
@@ -56,6 +72,12 @@ void merge_sort_recursive(int *array, size_t left, size_t right, int *temp)
 	merge_sort_recursive(array, mid, right, temp);
 	merge(array, left, mid, right, temp);
 }
+
+/**
+ * merge_sort - main method
+ * @array: Pointer to the array
+ * @size: size of the array
+ */
 
 void merge_sort(int *array, size_t size)
 {
