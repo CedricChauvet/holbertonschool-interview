@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 
 void merge_sort(int *array, size_t size) {
@@ -40,5 +38,5 @@ void merge_sort(int *array, size_t size) {
     print_array(array, size);
     printf("\n");
 
-    free(temp);
+    // free(temp);
 }
