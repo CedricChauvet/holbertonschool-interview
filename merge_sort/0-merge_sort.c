@@ -28,7 +28,7 @@ void merge(int *array, size_t left, size_t mid, size_t right, int *temp) {
 
     printf("[Done]: ");
     print_array(array + left, right - left);
-    printf("\n");
+    
 }
 
 void merge_sort_recursive(int *array, size_t left, size_t right, int *temp) {
