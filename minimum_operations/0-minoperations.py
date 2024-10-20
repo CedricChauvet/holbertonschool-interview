@@ -22,4 +22,4 @@ def minOperations(n):
         factors.append(n)
         
     # Calcul du nombre d'opérations
-    return sum(factors) - len(factors)
+    return sum(factors)
