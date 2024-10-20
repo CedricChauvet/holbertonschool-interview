@@ -7,9 +7,13 @@ by Ced
 
 
 def minOperations(n):
+    """
+    this alogrithm calculates the minimum number of operations
+    to reach n characters in a string
+    """
     if n <= 1:
         return 0
-    
+
     # Factorisation du nombre
     factors = []
     d = 2
@@ -20,6 +24,6 @@ def minOperations(n):
         d += 1
     if n > 1:
         factors.append(n)
-        
+
     # Calcul du nombre d'opérations
     return sum(factors)
