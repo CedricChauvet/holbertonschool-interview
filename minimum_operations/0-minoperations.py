@@ -20,4 +20,6 @@ def minOperations(n):
         d += 1
     if n > 1:
         factors.append(n)
-    
+        
+    # Calcul du nombre d'opérations
+    return sum(factors) - len(factors)
