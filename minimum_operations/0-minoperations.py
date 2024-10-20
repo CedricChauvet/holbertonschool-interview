@@ -7,12 +7,17 @@ by Ced
 
 
 def minOperations(n):
-    sol = 0
-    while n > 1:
-        if n%2 == 0:
-            sol += 2
-            n = n//2
-        else:
-            sol += 1
-            n = n - 1
-    return sol 
+    if n <= 1:
+        return 0
+    
+    # Factorisation du nombre
+    factors = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    
