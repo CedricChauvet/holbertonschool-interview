@@ -5,14 +5,21 @@ called Minimum operations
 by Ced
 """
 
-
 def minOperations(n):
-    sol = 0
-    while n > 1:
-        if n%2 == 0:
-            sol += 2
-            n = n//2
+    if n <= 1:
+        return 0
+    
+    operations = 0
+    clipboard = 1
+    current = 1
+    
+    while current < n:
+        if n - current >= current:
+            clipboard = current
+            current += clipboard
+            operations += 2
         else:
-            sol += 1
-            n = n - 1
-    return sol 
+            current += clipboard
+            operations += 1
+    
+    return operations
