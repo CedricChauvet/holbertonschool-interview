@@ -6,10 +6,10 @@
 
 int is_palindrome(unsigned long number)
 {
-    if(number == ULONG_MAX)
-    {
-        return (0);
-    }
+    // if(number == ULONG_MAX)
+    // {
+    //     return (0);
+    // }
 
     int c = 0; /* digit position */
     long long n; /* number */
