@@ -12,13 +12,14 @@ int check_cycle(listint_t *list)
     // printf('Size of listint_t : %d\n', s);
     for(int i = 0; i < 100; i++)
     {
-        list = list->next;
-        // listint_t *addr = list;
-        // printf("Adresse : %p\n", (void *)addr);
         if(list == NULL)
         {
             return (0);
         }
+        list = list->next;
+        // listint_t *addr = list;
+        // printf("Adresse : %p\n", (void *)addr);
+
     }
     return (1);
 }
