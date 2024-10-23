@@ -23,6 +23,9 @@ status_codes = {
 line_count = 0
 
 try:
+    """
+    boucle qui casse si CTRL+C
+    """
     for line in sys.stdin:
         line_count += 1
         
