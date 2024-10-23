@@ -26,26 +26,24 @@ try:
     for line in sys.stdin:
         line_count += 1
         
-        try:
-            # Split la ligne et extrait les informations
-            parts = line.split()
-            status_code = int(parts[-2])  # Avant-dernier élément
-            file_size = int(parts[-1])    # Dernier élément
-            
-            # Met à jour les statistiques
-            total_size += file_size
-            if status_code in status_codes:
-                status_codes[status_code] += 1
-                
-        except (IndexError, ValueError):
-            # Ignore les lignes mal formatées
-            continue
-            
+        # Split la ligne et extrait les informations
+        parts = line.split()
+        status_code = int(parts[-2])  # Avant-dernier élément
+        file_size = int(parts[-1])    # Dernier élément
+        
+        # Met à jour les statistiques
+        total_size += file_size
+        if status_code in status_codes:
+            status_codes[status_code] += 1
+                    
         # Imprime les stats toutes les 10 lignes
         if line_count % 10 == 0:
             print_stats(total_size, status_codes)
 
 except KeyboardInterrupt:
+    """
+    sortie de la boucle
+    """
     # En cas de Ctrl+C, imprime les stats finales
     print("sortie")
     print_stats(total_size, status_codes)
