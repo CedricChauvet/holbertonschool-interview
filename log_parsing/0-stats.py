@@ -4,8 +4,12 @@ interview project Log parsing
 By Ced
 """
 import sys
+
+
 def print_stats(total_size, status_codes):
-    """Imprime les statistiques"""
+    """
+    Imprime les statistiques
+    """
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
