@@ -7,8 +7,8 @@
 int is_palindrome(unsigned long number)
 {
     // Gestion de ULONG_MAX
-    if (number == ULONG_MAX)
-        return 0;  // ULONG_MAX n'est pas un palindrome
+    // if (number == ULONG_MAX)
+    //     return 0;  // ULONG_MAX n'est pas un palindrome
         
 
     int c = 0; /* digit position */
