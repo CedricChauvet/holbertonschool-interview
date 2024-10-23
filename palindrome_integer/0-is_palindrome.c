@@ -4,10 +4,10 @@
 #include "palindrome.h"
 
 
-int is_palindrome(int number)
+int is_palindrome(long int number)
 {
     int c = 0; /* digit position */
-    int n; /* number */
+    long int n; /* number */
     n = number;
     // nombre de digits
     while (n != 0)

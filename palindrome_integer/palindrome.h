@@ -2,7 +2,7 @@
 #define PALINDROM_H
 
 
-int is_palindrome(int n);
+int is_palindrome(long int n);
 
 
 #endif /* PALINDROME_H */
