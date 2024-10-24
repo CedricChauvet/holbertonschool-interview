@@ -28,7 +28,7 @@ def makeChange(coins: List[int], total: int) -> int:
     if total == 0:
         return 0
     if total < 0:
-        return -1
+        return 0
     
     
     if not isinstance(coins, list) or not isinstance(total, int):
