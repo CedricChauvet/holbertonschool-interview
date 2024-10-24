@@ -23,18 +23,20 @@ def makeChange(coins: List[int], total: int) -> int:
         TypeError: Si les arguments ne sont pas du bon type
     """
     # Validation des entrées
+    
+    # Cas de base
+    if total == 0:
+        return 0
+    if total < 0:
+        return -1
+    
+    
     if not isinstance(coins, list) or not isinstance(total, int):
         return -1
     if not coins:
         return -1
         
     if any(coin < 0 for coin in coins):
-        return -1
-    
-    # Cas de base
-    if total == 0:
-        return 0
-    if total < 0:
         return -1
         
     # Optimisation : éliminer les doublons et trier en ordre décroissant
