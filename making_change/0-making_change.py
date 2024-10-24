@@ -28,7 +28,7 @@ def makeChange(coins: List[int], total: int) -> int:
     if not coins:
         return -1
         
-    if any(coin <= 0 for coin in coins):
+    if any(coin < 0 for coin in coins):
         return -1
     
     # Cas de base
