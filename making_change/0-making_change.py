@@ -47,6 +47,6 @@ def makeChange(coins: List[int], total: int) -> int:
             dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
     if dp[total] == float('inf'):
-        return -1 
+        return -1
     else:
         return dp[total]
