@@ -3,6 +3,21 @@
 #include "slide_line.h"
 
 #define MAX_SIZE 100
+/**
+ * print_array - Prints out an array of integer, followed by a new line
+ * 
+ * @array: Pointer to the array of integer to be printed
+ * @size: Number of elements in @array
+ */
+static void print_array(int const *array, size_t size)
+{
+    size_t i;
+
+    printf("Line: ");
+    for (i = 0; i < size; i++)
+        printf("%s%d", i > 0 ? ", " : "", array[i]);
+    printf("\n");
+}
 
 /**
 * slide_line - Entry point
@@ -16,15 +31,16 @@ int slide_line(int *line, size_t size, int direction)
 {
 	int newLine[MAX_SIZE];
 	int i, j;
-	int h = 0;
+	int h = 0;  // h is the index of newLine
 
+	// crée un tableau de taille size avec des 0
 	for (i = 0; i <= (int)size; i++)
 	{
 		newLine[i] = 0;
 	}
 
 
-	for (i = 0; i <= (int)size ; i += 1)
+	for (i = 0; i <= (int)size ; i ++)
 	{
 		if (line[i] != 0)
 		{
@@ -44,7 +60,7 @@ int slide_line(int *line, size_t size, int direction)
 				}
 				else if (line[i] != line[j] && line[j] != 0)
 				{
-					newLine[h] = line[i];
+					// newLine[h] = line[i];
 					h = h + 1;
 					i = j - 1;
 					break;
@@ -55,10 +71,13 @@ int slide_line(int *line, size_t size, int direction)
 
 	if (direction == SLIDE_LEFT)
 	{
+
 		for (i = 0; i < (int)size; i++)
 		{
 			line[i] = newLine[i];
 		}
+		printf("line left   ");
+		print_array(line, size);
 	}
 	if (direction == SLIDE_RIGHT)
 	{
