@@ -41,7 +41,7 @@ List *add_node_begin(List **list, char *str)
         last->next = newNode;
     }
 
-    return (0);
+    return (newNode);
 } 
 
 
@@ -77,5 +77,5 @@ List *add_node_end(List **list, char *str)
         last->next = newNode;
     }
 
-    return (0);
+    return (newNode);
 } 
