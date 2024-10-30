@@ -13,68 +13,69 @@
 
 
 List *add_node_begin(List **list, char *str)
-    {	
-        printf("add_node_begin%s\n",str);
-		print_list(*list);
-		List *new_node;
-		List *temp;
-
-		/* Création du nouveau nœud */
-		new_node = malloc(sizeof(List));
-		if (new_node == NULL)
-			return (NULL);
-
-		/* Initialisation du nouveau nœud */
-		new_node->str = str;
-		new_node->next = NULL;
-
-		/* Si la liste est vide, le nouveau nœud devient la tête */
-		if (*list == NULL)
-		{
-			*list = new_node;
-			return (new_node);
-		}
-
-		/* Parcours jusqu'au dernier nœud */
-		temp = *list;
-		while (temp->next != NULL)
-			temp = temp->next;
-
-		/* Ajout du nouveau nœud à la fin */
-		temp->next = new_node;
-		return (0);
+{
+    List *newNode = malloc(sizeof(List));
+    if (newNode == NULL) {
+        // Gestion de l'erreur d'allocation
+        return NULL;
     }
+
+    newNode->str = str;
+
+    List *head;
+    List *last;
+
+    if (*list == NULL) {
+        // Si la liste est vide
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        *list = newNode;
+    } else {
+        // Si la liste n'est pas vide
+        head = *list;
+        last = head->prev;
+
+        newNode->next = head;
+        newNode->prev = last;
+        head->prev = newNode;
+        last->next = newNode;
+    }
+
+    return (0);
+} 
+
 
 // Fonction d'ajout de nœud en fin de liste
 
 List *add_node_end(List **list, char *str)
 {
-    List *new_node;
-    List *temp;
-
-    /* Création du nouveau nœud */
-    new_node = malloc(sizeof(List));
-    if (new_node == NULL)
-        return (NULL);
-
-    /* Initialisation du nouveau nœud */
-    new_node->str = str;
-    new_node->next = NULL;
-
-    /* Si la liste est vide, le nouveau nœud devient la tête */
-    if (*list == NULL)
-    {
-        *list = new_node;
-        return (new_node);
+    List *newNode = malloc(sizeof(List));
+    if (newNode == NULL) {
+        // Gestion de l'erreur d'allocation
+        return NULL;
     }
 
-    /* Parcours jusqu'au dernier nœud */
-    temp = *list;
-    while (temp->next != NULL)
-        temp = temp->next;
+    newNode->str = str;
 
-    /* Ajout du nouveau nœud à la fin */
-    temp->next = new_node;
+    List *head;
+    List *last;
 
-    return (new_node);
-}
+    if (*list == NULL) {
+        // Si la liste est vide
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        *list = newNode;
+    } else {
+        // Si la liste n'est pas vide
+        last = *list;
+		head = last->prev;
+        
+
+        newNode->next = head;
+        newNode->prev = last;
+        head->prev = newNode;
+        last->next = newNode;
+    }
+
+    return (0);
+} 
