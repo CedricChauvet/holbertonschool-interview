@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "slide_line.h"
 
-#define MAX_SIZE 100
+#define MAX_SIZE 32
 
 
 /**
@@ -52,7 +52,6 @@ int slide_line(int *line, size_t size, int direction)
         }
     }
 
-
    else if (direction == SLIDE_RIGHT) 
     {
         // Première passe : déplacer tous les nombres non-nuls vers la droite
@@ -80,12 +79,10 @@ int slide_line(int *line, size_t size, int direction)
         }
     }
 
-
-
 	    // Copier le résultat dans le tableau d'origine
     for (i = 0; i < (int)size; i++)
     {
-	line[i] = newLine[i];
+		line[i] = newLine[i];
 	}
 
 
