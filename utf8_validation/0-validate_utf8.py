@@ -11,12 +11,12 @@ def validUTF8(data):
     for i in data:
         #print(len(bin(i)))
         # print(len(bin(i)))
-        if len(bin(i)) - 2 < 8:
+        if len(bin(i)) - 2 <= 8:
             # print(i, " is ascci")
             return True
-        if len(bin(i)) - 2 > 8 and len(bin(i)) - 2 < 16:
-            # print(i, " is 2 bytes")
-            # print(bin(i),  "mask",bin(i)[2:5], "second byte", bin(i)[10:12])
+        if len(bin(i)) - 2 > 9 and len(bin(i)) - 2 < 16:
+            print(i, " is 2 bytes")
+            print(bin(i),  "mask",bin(i)[2:5], "second byte", bin(i)[10:12])
             if bin(i)[2:5] == "110" and bin(i+1)[10:11] == "10":
                 return True
             else:
