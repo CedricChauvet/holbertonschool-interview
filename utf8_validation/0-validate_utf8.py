@@ -9,25 +9,33 @@ def validUTF8(data):
     test si une liste de caracter est un utf8
     """
     for i in data:
-        premier_octet = i >> 8
-        second_octet = i & 0xFF
-        # print("i", i, "premier_octet", premier_octet, "second_octet", second_octet)
-        #i = hex(i)
-        #if (i > 0x7f and i < 0xC280) or i > 0xC3BF:
-        if i <=  0x7f:
-            return True
-        if i > 0x7f and i < 0x7FF:
-            # Obtenir le premier octet (0xC3)
-               #
-            if not (premier_octet > 0xC0 and premier_octet < 0xDF):
-                # Obtenir le second octet (0xBF)
-                if not (second_octet > 0x80 and second_octet < 0xBF):
-                    return False
-    return True
+        #print(len(bin(i)))
+        # print(len(bin(i)))
+        if len(bin(i)) - 2 < 8:
+            print(i, " is ascci")   
+        if len(bin(i)) - 2 > 8 and len(bin(i)) - 2 < 16:
+            print(i, " is 2 bytes")
+            print(bin(i),  "mask",bin(i)[2:5], "second byte", bin(i)[10:12])
+            if bin(i)[2:5] == "110" and bin(i+1)[10:11] == "10":
+                return True
+            else:
+                return False
 
 
 
-# Premier octet : 0xC0 à 0xDF
-# Deuxième octet : 0x80 à 0xBF
 
-# 	C280 c3 bf
+
+
+
+
+
+
+
+
+
+
+
+        # if len(bin(i)) - 2 > 16 and len(bin(i)) - 2 < 24:
+        #     print(i, " is 3 bytes")
+        # if len(bin(i)) - 2 > 24 and len(bin(i)) - 2 < 32:
+        #     print(i, " is 4 bytes")

@@ -39,6 +39,7 @@ List *add_node_begin(List **list, char *str)
         newNode->prev = last;
         head->prev = newNode;
         last->next = newNode;
+		*list = newNode;
     }
 
     return (newNode);
@@ -56,25 +57,24 @@ List *add_node_end(List **list, char *str)
     }
 
     newNode->str = str;
+    
 
-    List *head;
-    List *last;
 
-    if (*list == NULL) {
+	if (list == NULL) {
         // Si la liste est vide
         newNode->next = newNode;
         newNode->prev = newNode;
-        *list = newNode;
+        head = newNode;
     } else {
         // Si la liste n'est pas vide
-        last = *list;
-		head = last->prev;
-        
+        List *last = head->prev;
+		head = *list;
 
         newNode->next = head;
         newNode->prev = last;
         head->prev = newNode;
         last->next = newNode;
+		// *list = newNode;
     }
 
     return (newNode);
