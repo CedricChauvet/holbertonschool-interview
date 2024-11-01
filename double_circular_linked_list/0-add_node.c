@@ -2,76 +2,85 @@
 #include <stdlib.h>
 #include "list.h"
 
-
 /**
- * print_list - Print informations about each element of a list
+ * add_node_begin - Adds a new node at the beginning of a doubly circular list
+ * @list: A double pointer to the head of the linked list
+ * @str: String to be stored in the new node
  *
- * @list: A pointer to the head of the linkd list
- *
- * Return: void
+ * Return: Address of the new node, or NULL if allocation fails
  */
-
-
 List *add_node_begin(List **list, char *str)
 {
-    List *newNode = malloc(sizeof(List));
-    if (newNode == NULL) {
-        // Gestion de l'erreur d'allocation
-        return NULL;
-    }
+	List *newNode, *head, *last;
 
-    newNode->str = str;
+	/* Allocate memory for the new node */
+	newNode = malloc(sizeof(List));
+	if (newNode == NULL)
+		return (NULL);
 
-    List *head;
-    List *last;
+	/* Initialize the string in the new node */
+	newNode->str = str;
 
-    if (*list == NULL) {
-        // Si la liste est vide
-        newNode->next = newNode;
-        newNode->prev = newNode;
-        *list = newNode;
-    } else {
-        // Si la liste n'est pas vide
-        head = *list;
-        last = head->prev;
-
-        newNode->next = head;
-        newNode->prev = last;
-        head->prev = newNode;
-        last->next = newNode;
+	/* Case 1: Empty list */
+	if (*list == NULL)
+	{
+		newNode->next = newNode;
+		newNode->prev = newNode;
 		*list = newNode;
-    }
+		return (newNode);
+	}
 
-    return (newNode);
-} 
+	/* Case 2: List is not empty */
+	head = *list;
+	last = head->prev;
+
+	/* Connect new node to the list */
+	newNode->next = head;
+	newNode->prev = last;
+	head->prev = newNode;
+	last->next = newNode;
+	*list = newNode;
+
+	return (newNode);
+}
+
+/**
+ * add_node_end - Adds a new node at the end of a doubly circular list
+ * @list: A double pointer to the head of the linked list
+ * @str: String to be stored in the new node
+ *
+ * Return: Address of the new node, or NULL if allocation fails
+ */
 List *add_node_end(List **list, char *str)
 {
-    /* Allocation du nouveau nœud */
-    List *newNode = malloc(sizeof(List));
-    if (newNode == NULL)
-        return NULL;
-    
-    /* Initialisation des données du nouveau nœud */
-    newNode->str = str;
-    
-    /* Cas 1: Liste vide */
-    if (*list == NULL)
-    {
-        newNode->next = newNode;  /* Pointe sur lui-même */
-        newNode->prev = newNode;  /* Pointe sur lui-même */
-        *list = newNode;         /* Devient la tête de liste */
-        return newNode;
-    }
-    
-    /* Cas 2: Liste non vide */
-    List *head = *list;
-    List *last = head->prev;
-    
-    /* Mise à jour des pointeurs */
-    newNode->next = head;        /* Nouveau nœud pointe vers la tête */
-    newNode->prev = last;        /* Nouveau nœud pointe vers l'ancien dernier */
-    head->prev = newNode;        /* La tête pointe vers le nouveau dernier */
-    last->next = newNode;        /* L'ancien dernier pointe vers le nouveau */
-    
-    return newNode;
+	List *newNode, *head, *last;
+
+	/* Allocate memory for the new node */
+	newNode = malloc(sizeof(List));
+	if (newNode == NULL)
+		return (NULL);
+
+	/* Initialize the string in the new node */
+	newNode->str = str;
+
+	/* Case 1: Empty list */
+	if (*list == NULL)
+	{
+		newNode->next = newNode;
+		newNode->prev = newNode;
+		*list = newNode;
+		return (newNode);
+	}
+
+	/* Case 2: List is not empty */
+	head = *list;
+	last = head->prev;
+
+	/* Update pointers to insert at end */
+	newNode->next = head;
+	newNode->prev = last;
+	head->prev = newNode;
+	last->next = newNode;
+
+	return (newNode);
 }

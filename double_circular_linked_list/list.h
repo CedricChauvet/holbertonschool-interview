@@ -1,10 +1,11 @@
-// project Double circular linked list
+
+#ifndef LIST_H
+#define LIST_H
+/* project Double circular linked list */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef LIST_H
-#define LIST_H
 
 
 /**
@@ -18,9 +19,9 @@
  */
 typedef struct List
 {
-  char *str;
-  struct List *prev;
-  struct List *next;
+	char *str;
+	struct List *prev;
+	struct List *next;
 } List;
 
 
