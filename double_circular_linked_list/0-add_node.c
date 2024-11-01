@@ -44,38 +44,34 @@ List *add_node_begin(List **list, char *str)
 
     return (newNode);
 } 
-
-
-// Fonction d'ajout de nœud en fin de liste
-
 List *add_node_end(List **list, char *str)
 {
+    /* Allocation du nouveau nœud */
     List *newNode = malloc(sizeof(List));
-    if (newNode == NULL) {
-        // Gestion de l'erreur d'allocation
+    if (newNode == NULL)
         return NULL;
-    }
-
+    
+    /* Initialisation des données du nouveau nœud */
     newNode->str = str;
     
-
-
-	if (list == NULL) {
-        // Si la liste est vide
-        newNode->next = newNode;
-        newNode->prev = newNode;
-        head = newNode;
-    } else {
-        // Si la liste n'est pas vide
-        List *last = head->prev;
-		head = *list;
-
-        newNode->next = head;
-        newNode->prev = last;
-        head->prev = newNode;
-        last->next = newNode;
-		// *list = newNode;
+    /* Cas 1: Liste vide */
+    if (*list == NULL)
+    {
+        newNode->next = newNode;  /* Pointe sur lui-même */
+        newNode->prev = newNode;  /* Pointe sur lui-même */
+        *list = newNode;         /* Devient la tête de liste */
+        return newNode;
     }
-
-    return (newNode);
-} 
+    
+    /* Cas 2: Liste non vide */
+    List *head = *list;
+    List *last = head->prev;
+    
+    /* Mise à jour des pointeurs */
+    newNode->next = head;        /* Nouveau nœud pointe vers la tête */
+    newNode->prev = last;        /* Nouveau nœud pointe vers l'ancien dernier */
+    head->prev = newNode;        /* La tête pointe vers le nouveau dernier */
+    last->next = newNode;        /* L'ancien dernier pointe vers le nouveau */
+    
+    return newNode;
+}
