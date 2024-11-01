@@ -9,21 +9,15 @@ def validUTF8(data):
     test si une liste de caracter est un utf8
     """
     for i in data:
-        #print(len(bin(i)))
-        # print(len(bin(i)))
-        if len(bin(i)) - 2 < 8:
-            # print(i, " is ascci")
-            return True
-        if len(bin(i)) - 2 > 9 and len(bin(i)) - 2 < 16:
-            print(i, " is 2 bytes")
-            print(bin(i),  "mask",bin(i)[2:5], "second byte", bin(i)[10:12])
-            if bin(i)[2:5] == "110" and bin(i+1)[10:11] == "10":
-                return True
-            else:
-                return False
+        mask1 = 0b011
+        print(i, ", is",bin(i,8))
+        if bin(i)[2:5] == mask1:
+            print(i, " is ascci", bin(i))
+        mask2 = 0b110
+        mask3 = 0b1110
+        mask4 = 0b11110
 
-
-
+    return True
 
 
 
