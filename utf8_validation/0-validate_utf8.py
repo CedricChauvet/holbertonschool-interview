@@ -9,6 +9,7 @@ def validUTF8(data):
     test si une liste de caracter est un utf8
     """
     data = iter(data)
+    
     for i in data:
         if int(i)>>7 == 0:
             continue
