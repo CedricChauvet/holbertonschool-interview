@@ -22,11 +22,12 @@ void radix_sort(int *array, size_t size)
 
 	for (int i = 0; i < n; i++)
 	{	
-		exp = 10^i;
+	
+		print_array(array, size);
 		countSort(array, size, exp);
+		exp = 10*exp;
 	}
 }
-
 
 /**
  * compterChiffres - Prints an array of integers
