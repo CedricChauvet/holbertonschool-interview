@@ -14,15 +14,16 @@ void radix_sort(int *array, size_t size)
     /* compute radix  sort with Less Significant Digit*/
 	int n = 0;
     int max = 0;
-	
+	int exp = 1;
 	max = find_max(array, size);
 	// printf("max: %d\n", max);
 	n = compterChiffres(max);
 	// printf("n: %d\n", n);
 
 	for (int i = 0; i < n; i++)
-	{
-		countSort(array, size, pow(10.0, i));
+	{	
+		exp = 10^i;
+		countSort(array, size, exp);
 	}
 }
 
