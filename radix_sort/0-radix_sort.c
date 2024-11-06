@@ -4,93 +4,78 @@
 #include "sort.h"
 
 /**
- * radix_sort - Prints an array of integers
- *
- * @array: The array to be printed
- * @size: Number of elements in @array
+ * radix_sort - Trie un tableau d'entiers avec LSD radix sort
+ * @array: Le tableau à trier
+ * @size: Nombre d'éléments dans le tableau
  */
 void radix_sort(int *array, size_t size)
 {
-    /* compute radix  sort with Less Significant Digit*/
-	int n = 0;
-    int max = 0;
-	int exp = 1;
-	max = find_max(array, size);
-	// printf("max: %d\n", max);
-	n = compterChiffres(max);
-	// printf("n: %d\n", n);
+    if (array == NULL || size < 2)
+        return;
 
-	for (int i = 0; i < n; i++)
-	{	
-	
-		print_array(array, size);
-		countSort(array, size, exp);
-		exp = 10*exp;
-	}
-}
+    int max = find_max(array, size);
+    int exp;
 
-/**
- * compterChiffres - Prints an array of integers
- *
- * @nombre: The number n
- * @returns: Number of elements in a n
- */
-int compterChiffres(int nombre) {
-    
-	int compte = 0;
-    if (nombre == 0) return 1;
-    while (nombre != 0) {
-        nombre /= 10;
-        compte++;
+    // Commencer avec exp = 1 et continuer tant que max/exp > 0
+    for (exp = 1; max/exp > 0; exp *= 10)
+    {
+        countSort(array, size, exp);
+        if (max/exp > 0)  // Ne pas imprimer après la dernière itération
+            print_array(array, size);
     }
-    return compte;
 }
 
 /**
- * find_max - Prints an array of integers
- *
- * @array: The array to compute
- * @size: Size of the array
- * @returns: The max value of the array
+ * find_max - Trouve la valeur maximale dans un tableau
+ * @array: Le tableau à analyser
+ * @size: Taille du tableau
+ * Return: La valeur maximale
  */
 int find_max(int *array, size_t size)
 {
-	int max = 0;
-	for (size_t i = 0; i < size; i++)
-	{
-		if (array[i] > max)
-		{
-			max = array[i];
-		}
-	}
-	return max;
+    int max = array[0];
+    for (size_t i = 1; i < size; i++)
+    {
+        if (array[i] > max)
+            max = array[i];
+    }
+    return max;
 }
 
-// Fonction pour effectuer le tri par comptage sur un chiffre spécifique
-void countSort(int arr[], int size, int exp) {
-    	// int *output = malloc(size * sizeof(int));
-	// int *output = (int *)malloc(n * sizeof(int));
-	int *output = (int *)malloc(size * sizeof(int));
-	int count[10] = {0}; // Pour stocker le compte des chiffres (0-9)
-    
+/**
+ * countSort - Effectue le tri par comptage pour un chiffre spécifique
+ * @array: Le tableau à trier
+ * @size: Taille du tableau
+ * @exp: L'exposant actuel (1, 10, 100, etc.)
+ */
+void countSort(int *array, int size, int exp)
+{
+    int *output = malloc(size * sizeof(int));
+    int count[10] = {0};
+    int i;
+
+    if (output == NULL)
+        return;
+
     // Compter les occurrences
-    for (int i = 0; i < size; i++) {
-        count[(arr[i] / exp) % 10]++;
-    }
-    
-    // Modifier count[i] pour contenir la position réelle de ce chiffre dans output[]
-    for (int i = 1; i < 10; i++) {
+    for (i = 0; i < size; i++)
+        count[(array[i] / exp) % 10]++;
+
+    // Calculer les positions finales
+    for (i = 1; i < 10; i++)
         count[i] += count[i - 1];
-    }
-    
+
     // Construire le tableau de sortie
-    for (int i = size - 1; i >= 0; i--) {
-        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        count[(arr[i] / exp) % 10]--;
+    for (i = size - 1; i >= 0; i--)
+    {
+        int digit = (array[i] / exp) % 10;
+        output[count[digit] - 1] = array[i];
+        count[digit]--;
     }
-    
-    // Copier le tableau de sortie dans arr[]
-    for (int i = 0; i < size; i++) {
-        arr[i] = output[i];
-    }
+
+    // Copier le tableau trié dans le tableau original
+    for (i = 0; i < size; i++)
+        array[i] = output[i];
+
+    free(output);
 }
