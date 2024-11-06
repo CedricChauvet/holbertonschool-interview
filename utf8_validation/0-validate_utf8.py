@@ -8,18 +8,40 @@ def validUTF8(data):
     """
     test si une liste de caracter est un utf8
     """
+    data = iter(data)
     for i in data:
-        mask1 = 0b011
-        print(i, ", is",bin(i,8))
-        if bin(i)[2:5] == mask1:
-            print(i, " is ascci", bin(i))
-        mask2 = 0b110
-        mask3 = 0b1110
-        mask4 = 0b11110
+        if int(i)>>7 == 0:
+            continue
 
+        elif int(i)>>5 == 6:
+            i == data.next()
+            if int(i)>>6 != 2:
+                continue
+
+        elif int(i)>>4 == 14:
+ 
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+    
+            
+        elif int(i)>>3 == 30: 
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+
+        else:
+            return False
     return True
-
-
 
 
 
