@@ -4,42 +4,67 @@
 #include "sort.h"
 
 /**
- * radix_sort - Trie un tableau d'entiers avec LSD radix sort
- * @array: Le tableau à trier
- * @size: Nombre d'éléments dans le tableau
+ * radix_sort - Prints an array of integers
+ *
+ * @array: The array to be printed
+ * @size: Number of elements in @array
  */
 void radix_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
+	if (array == NULL || size < 2)
         return;
+    /* compute radix  sort with Less Significant Digit*/
+	int n = 0;
+    int max = 0;
+	int exp = 1;
+	max = find_max(array, size);
+	// printf("max: %d\n", max);
+	n = compterChiffres(max);
+	// printf("n: %d\n", n);
 
-    int max = find_max(array, size);
-    int exp;
-
-    // Commencer avec exp = 1 et continuer tant que max/exp > 0
-    for (exp = 1; max/exp > 0; exp *= 10)
-    {
-        countSort(array, size, exp);
-        if (max/exp > 0)  // Ne pas imprimer après la dernière itération
-            print_array(array, size);
-    }
+	for (int i = 0; i < n; i++)
+	{	
+		countSort(array, size, exp);
+		print_array(array, size);
+		exp = 10*exp;
+	}
 }
 
 /**
- * find_max - Trouve la valeur maximale dans un tableau
- * @array: Le tableau à analyser
- * @size: Taille du tableau
- * Return: La valeur maximale
+ * compterChiffres - Prints an array of integers
+ *
+ * @nombre: The number n
+ * @returns: Number of elements in a n
+ */
+int compterChiffres(int nombre) {
+    
+	int compte = 0;
+    if (nombre == 0) return 1;
+    while (nombre != 0) {
+        nombre /= 10;
+        compte++;
+    }
+    return compte;
+}
+
+/**
+ * find_max - Prints an array of integers
+ *
+ * @array: The array to compute
+ * @size: Size of the array
+ * @returns: The max value of the array
  */
 int find_max(int *array, size_t size)
 {
-    int max = array[0];
-    for (size_t i = 1; i < size; i++)
-    {
-        if (array[i] > max)
-            max = array[i];
-    }
-    return max;
+	int max = 0;
+	for (size_t i = 0; i < size; i++)
+	{
+		if (array[i] > max)
+		{
+			max = array[i];
+		}
+	}
+	return max;
 }
 
 /**
