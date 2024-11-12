@@ -4,15 +4,9 @@ Valid UTF-8
 """
 
 
-def is_valid_utf8(data):
+def validUTF8(data):
     """
-    Vérifie si une liste de caractères représente une chaîne UTF-8 valide.
-    
-    Args:
-        data (list): Une liste de nombres entiers représentant les caractères.
-        
-    Returns:
-        bool: True si la liste représente une chaîne UTF-8 valide, False sinon.
+    test si une liste de caracter est un utf8
     """
     n_bytes = 0
     
