@@ -15,7 +15,7 @@ def validUTF8(data):
     for num in data:
         # Récupère le masque binaire de l'octet le plus à gauche
         bin_rep = format(num, '#010b')[-8:]
-        
+        print(bin_rep)
         # Si c'est un octet de suite
         if n_bytes != 0:
             # Vérifie si le masque binaire commence par 10
@@ -37,7 +37,47 @@ def validUTF8(data):
 
 
 
+"""
 
+
+    data = iter(data)
+    
+    for i in data:
+        if int(i)>>7 == 0:
+            continue
+
+        elif int(i)>>5 == 6:
+            i == data.next()
+            if int(i)>>6 != 2:
+                continue
+
+        elif int(i)>>4 == 14:
+ 
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+    
+            
+        elif int(i)>>3 == 30: 
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+            j = next(data)
+            if int(j)>>6 == 2:
+                continue
+
+        else:
+            return False
+    return True
+
+
+"""
 
 
 
