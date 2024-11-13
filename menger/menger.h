@@ -6,5 +6,5 @@
 #include <stdlib.h>
 
 void menger(int level);
-
+int isHole(int row, int col);
 #endif /* _MENGER_H_ */
