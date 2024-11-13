@@ -27,26 +27,30 @@ def validUTF8(data):
         
         # Sinon, détermine le nombre d'octets sur la base du masque
         if bin_rep[0] == '0':
-            print("ascii")
+            continue
         elif bin_rep[0:3] == '110':
-            print("2 bytes")
+            # print("2 bytes")
             num = next(data)
-            if not (format(num, '#010b')[0:2] == '10'):
+            num2 = format(num, '#010b')[2:4]
+            # print(num2)
+            if not (num2 == '10'):
                 return False
             
         elif bin_rep[0:4] == '1110':
-            print("3 bytes")
+            # print("3 bytes")
             for i in range(2):
                 num = next(data)
-                if not (format(num, '#010b')[0:2] == '10'):
+                num2 = format(num, '#010b')[2:4]
+                if not (format == '10'):
                     return False
             
         elif bin_rep[0:5] == '11110':
-            print("3 bytes")
+            #print("3 bytes")
             for i in range(3):
                 num = next(data)
-                if not (format(num, '#010b')[0:2] == '10'):
-                    return False
+                num2 = format(num, '#010b')[2:4]
+                if not (format == '10'):
+                    return False 
     
     # S'il reste des octets en attente, c'est invalid
     return True
