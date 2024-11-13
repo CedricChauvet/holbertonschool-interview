@@ -57,6 +57,8 @@ def validUTF8(data):
                         return False
                 except:
                     return False
+        else:
+            return False
     # S'il reste des octets en attente, c'est invalid
     return True
 
