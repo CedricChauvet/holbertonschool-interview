@@ -3,4 +3,4 @@
 0-main
 """
 def island_perimeter(grid):
-    print("hello world")
+    return 1
