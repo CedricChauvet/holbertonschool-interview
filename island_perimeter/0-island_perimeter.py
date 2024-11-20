@@ -8,4 +8,5 @@ def island_perimeter(grid):
     """
     I am the documentation
     """
+    print(grid)
     return 1
