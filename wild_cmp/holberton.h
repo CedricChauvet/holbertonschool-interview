@@ -3,7 +3,6 @@
 
 #include <stddef.h>
 
-
 int wildcmp(const char *str, const char *pattern);
 
 #endif
