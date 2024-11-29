@@ -10,7 +10,6 @@
  *           wildcards '*' and '?'.
  *
  * Description:
- * - '?' matches any single character.
  * - '*' matches zero or more characters.
  *
  * Return: 1 if the strings can be considered identical,
