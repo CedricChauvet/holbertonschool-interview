@@ -3,39 +3,25 @@
 #include <stdio.h>
 
 int wildcmp(const char *str, const char *pattern) {
-    // Pointeurs pour garder la trace des positions
-    const char *star = NULL;      // Pointeur pour la position du dernier *
-    const char *match = NULL;     // Pointeur pour correspondre dans str
-
-    // Parcourt les deux chaînes
-    while (*str) {
-        if (*pattern == '?' || *pattern == *str) {
-            // Correspondance normale ou avec '?'
-            str++;
-            pattern++;
-        } else if (*pattern == '*') {
-            // Rencontré un '*'
-            star = pattern++;     // Enregistrez la position de *
-            match = str;          // Marquez la position correspondante dans str
-        } else if (star) {
-            // Si un * a été rencontré auparavant
-            pattern = star + 1;   // Revenez à la position après *
-            str = ++match;        // Essayez avec un caractère supplémentaire
-        } else {
-            // Pas de correspondance
-            return (0);
-        }
+     // Base cases
+    if (*pattern == '\0') {
+        // If the pattern is empty, the strings match only if str is also empty
+        if(*str == '\0') {
+			return (1);
+		}
+		else {
+			return (0);
+		}
+	}
+    if (*pattern == '*') {
+        // If the current pattern character is '*', try matching zero or more characters
+        return wildcmp(str, pattern + 1) || (*str != '\0' && wildcmp(str + 1, pattern));
+    }
+    if (*str != '\0' && (*pattern == '?' || *pattern == *str)) {
+        // If the characters match or the pattern is '?', continue recursively
+        return wildcmp(str + 1, pattern + 1);
     }
 
-    // Vérifiez les caractères restants dans le modèle
-    while (*pattern == '*') {
-        pattern++;
-    }
-
-    // Si le modèle est vide, c'est une correspondance
-    if( *pattern == '\0') {
-		return (1);
-	} else {
-		return (0);
-	}
-	}
+    // No match found
+    return (0);
+}
