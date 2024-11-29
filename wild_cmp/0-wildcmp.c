@@ -2,6 +2,12 @@
 #include "holberton.h"
 #include <stdio.h>
 
+/*
+* wildcmp - compares two strings
+* @str: string to compare
+* @pattern: pattern to compare
+* Return: 1 if the strings can be considered identical, otherwise 0
+*/
 int wildcmp(const char *str, const char *pattern)
 {
 
