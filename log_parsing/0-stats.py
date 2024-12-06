@@ -5,6 +5,7 @@ By Ced  :q
 """
 import sys
 
+
 def print_stats(total_size, status_codes):
     """Imprime les statistiques"""
     print("File size: {}".format(total_size))
@@ -25,31 +26,32 @@ def process_logs(**kwargs):
     try:
         for line in sys.stdin:
             line_count += 1
-            
+
             try:
                 # Split la ligne et extrait les informations
                 parts = line.split()
                 status_code = int(parts[-2])  # Avant-dernier élément
                 file_size = int(parts[-1])    # Dernier élément
-                
+
                 # Met à jour les statistiques
                 total_size += file_size
                 if status_code in status_codes:
                     status_codes[status_code] += 1
-                    
+
             except (IndexError, ValueError):
                 # Ignore les lignes mal formatées
+                print("heeeeeeu")
                 continue
-                
+
             # Imprime les stats toutes les 10 lignes
             if line_count % 10 == 0:
                 print_stats(total_size, status_codes)
         print_stats(total_size, status_codes)
-    
+
     except BrokenPipeError:
         # Suppress broken pipe errors
         pass
-    
+
     except KeyboardInterrupt:
         # En cas de Ctrl+C, imprime les stats finales
         print_stats(total_size, status_codes)
