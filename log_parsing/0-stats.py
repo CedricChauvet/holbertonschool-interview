@@ -42,6 +42,7 @@ def process_logs(**kwargs):
                 # Ignore les lignes mal formatées
                 # print("heeeeeeu")
                 file_size = int(parts[-1])
+                total_size += file_size
                 pass
 
             # Imprime les stats toutes les 10 lignes
