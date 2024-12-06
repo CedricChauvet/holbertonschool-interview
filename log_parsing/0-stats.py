@@ -44,7 +44,7 @@ def process_logs(**kwargs):
             # Imprime les stats toutes les 10 lignes
             if line_count % 10 == 0:
                 print_stats(total_size, status_codes)
-
+        print_stats(total_size, status_codes)
     
     except BrokenPipeError:
         # Suppress broken pipe errors
