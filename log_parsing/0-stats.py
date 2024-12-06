@@ -41,6 +41,7 @@ def process_logs(**kwargs):
             except (IndexError, ValueError):
                 # Ignore les lignes mal formatées
                 # print("heeeeeeu")
+                file_size = int(parts[-1])
                 pass
 
             # Imprime les stats toutes les 10 lignes
