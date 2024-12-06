@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 This is the Log parsing project
-By Ced
+By Ced  :q
 """
 import sys
 
