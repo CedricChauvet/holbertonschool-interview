@@ -13,7 +13,7 @@ def print_stats(total_size, status_codes):
             print("{}: {}".format(code, status_codes[code]))
 
 
-def process_logs():
+def process_logs(**kwargs):
     """Fonction principale qui traite les logs"""
     total_size = 0
     status_codes = {
@@ -44,7 +44,12 @@ def process_logs():
             # Imprime les stats toutes les 10 lignes
             if line_count % 10 == 0:
                 print_stats(total_size, status_codes)
-        print("fin")
+
+    
+    except BrokenPipeError:
+        # Suppress broken pipe errors
+        pass
+    
     except KeyboardInterrupt:
         # En cas de Ctrl+C, imprime les stats finales
         print_stats(total_size, status_codes)
