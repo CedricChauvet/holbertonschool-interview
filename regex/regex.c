@@ -3,6 +3,13 @@
 
 #include "regex.h"
 
+/**
+ * regex_match - function that checks
+ * whether a given pattern matches a given string.
+ * @str: pointer to checked string
+ * @pattern: pointer to pattern to match
+ * Return: 1 if str corresponds to the pattern, 0 otherwise
+ */
 int regex_match(const char *str, const char *pattern)
 {
 	/*if pattern is empty, return 1 if str is empty, 0 otherwise*/
