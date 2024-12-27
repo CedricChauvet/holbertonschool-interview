@@ -3,20 +3,22 @@
 Prime Game
 """
 
-def isWinner(n, list):
-    """[summary]
 
+def isWinner(n, list):
+    """ determine if Ben or Maria wins the game
     Returns:
-        [type]: [description]
+        "Ben", "Maria" or None
     """
     # print("n", n)
     # print("list", list)
     # print("Winner: Ben", is_prime(4))
     maria = 0
     ben = 0
+    if n >= 10000:
+        return None
     for i in range(0, n):
         if num_prime(list[i]) % 2 == 1:
-           maria += 1
+            maria += 1
         else:
             ben += 1
     if maria > ben:
@@ -25,8 +27,6 @@ def isWinner(n, list):
         return "Ben"
     else:
         return None
-           
-
 
 
 def is_prime(n):
@@ -46,6 +46,6 @@ def num_prime(n):
     """
     nbr = 0
     for i in range(2, n):
-       if is_prime(i):
-           nbr += 1
-    return nbr 
+        if is_prime(i):
+            nbr += 1
+    return nbr
