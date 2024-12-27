@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-import math
+"""
+Prime Game
+"""
 
 def isWinner(n, list):
     """[summary]
